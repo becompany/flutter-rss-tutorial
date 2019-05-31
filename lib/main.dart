@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:webfeed/domain/atom_feed.dart';
 
 import 'becompany_home_screen.dart';
+import 'becompany_rss_service.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  final AtomFeed feed = await BecompanyRssService().getFeed();
+  runApp(MyApp(feed));
+}
 
 class MyApp extends StatelessWidget {
+
+  final AtomFeed feed;
+
+  MyApp(this.feed);
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -22,7 +32,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: BecompanyHomeScreen(),
+      home: BecompanyHomeScreen(feed),
     );
   }
 }
