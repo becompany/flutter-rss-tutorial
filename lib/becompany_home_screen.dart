@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:webfeed/webfeed.dart';
+import 'package:intl/intl.dart';
+
+import 'webview_container.dart';
 
 class BecompanyHomeScreen extends StatelessWidget {
   final AtomFeed feed;
@@ -15,11 +18,20 @@ class BecompanyHomeScreen extends StatelessWidget {
       body: ListView.builder(
           itemCount: feed.items.length,
           itemBuilder: (BuildContext ctxt, int index) {
-            return Card(
-                child: Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Text(feed.items[index].title),
-            ));
+            final item = feed.items[index];
+            return ListTile(
+              title: Text(item.title),
+              subtitle: Text('Published at ' +
+                  DateFormat.yMd().format(DateTime.parse(item.published))),
+              contentPadding: EdgeInsets.all(16.0),
+              onTap: () async {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => WebViewContainer(
+                            item.id.replaceFirst('http', 'https'))));
+              },
+            );
           }),
     );
   }
