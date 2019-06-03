@@ -1,5 +1,5 @@
 name: becompany_rss_reader
-description: A new Flutter project.
+description: Latest blog posts from BeCompany.
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -31,6 +31,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: "^0.7.2"
 
 
 # For information on the generic Dart part of this file, see the
@@ -74,3 +75,8 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/becompany.png"

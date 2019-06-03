@@ -10,7 +10,7 @@ class BecompanyHomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('BeCompany RSS'),
+        title: Text('BeCompany RSS News'),
       ),
       body: FutureBuilder(
         future: BecompanyRssService().getFeed(),
