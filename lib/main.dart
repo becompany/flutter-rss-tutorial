@@ -10,7 +10,6 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-
   final AtomFeed feed;
 
   MyApp(this.feed);
@@ -32,7 +31,27 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: BecompanyHomeScreen(feed),
+      home: FeedStore(feed: feed, child: BecompanyHomeScreen()),
     );
   }
+}
+
+class FeedStore extends InheritedWidget {
+  final AtomFeed feed;
+
+  const FeedStore({
+    Key key,
+    @required this.feed,
+    @required Widget child,
+  })  : assert(feed != null),
+        assert(child != null),
+        super(key: key, child: child);
+
+  static FeedStore of(BuildContext context) {
+    return context.inheritFromWidgetOfExactType(FeedStore) as FeedStore;
+  }
+
+  @override
+  bool updateShouldNotify(FeedStore oldWidget) =>
+      feed.updated != oldWidget.feed.updated;
 }

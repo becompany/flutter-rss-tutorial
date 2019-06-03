@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:webfeed/webfeed.dart';
 import 'package:intl/intl.dart';
 
+import 'main.dart';
 import 'webview_container.dart';
 
 class BecompanyHomeScreen extends StatelessWidget {
-  final AtomFeed feed;
 
-  BecompanyHomeScreen(this.feed);
+  BecompanyHomeScreen();
 
   @override
   Widget build(BuildContext context) {
+    final feed = FeedStore.of(context).feed;
     return Scaffold(
       appBar: AppBar(
         title: Text('BeCompany RSS'),
